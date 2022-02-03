@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+
+    jenkins:
+        build:
+            dockerfile: dockerfile
+            context: .
+        image: jenkins
+        container_name: jenkins
+        volumes:
+            - "./jenkins:/var/lib/jenkins"
+        ports:
+            - "8080:8080"
+            - "50000:50000"
+        command: /bin/bash -c "/etc/init.d/jenkins start && tail -f /dev/null"
